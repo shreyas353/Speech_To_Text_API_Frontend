@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+.speech-container.fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+}
+
+.speech-box {
+  background: var(--box);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  animation: fadeIn 0.5s ease;
+  margin-top: 2rem;
+}
+
+.speech-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--primary);
+}
+
+.speech-title::before {
+  content: "🎤 ";
+}
+
+.speech-mode-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.mode-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.mode-button.active {
+  background: #5c46d3;
+}
+
+.file-input {
+  display: block;
+  margin: 1rem auto;
+}
+
+.primary-button,
+.secondary-button,
+.record-button,
+.stop-button {
+  display: block;
+  margin: 0.5rem auto;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--primary);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.loading-text {
+  text-align: center;
+  color: var(--primary);
+}
+
+.audio-preview {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.transcription-box {
+  background: rgba(123, 97, 255, 0.05);
+  border-left: 4px solid var(--primary);
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+
+.app-header {
+  text-align: center;
+  padding: 3rem 1rem 0;
+  background: linear-gradient(135deg, #e8e5ff, #f4f3ff);
+  border-bottom: 1px solid #ccc;
+}
+
+.powered {
+  background: var(--highlight);
+  color: white;
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.highlight {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 2.75rem;
+}
+
+.description {
+  max-width: 700px;
+  margin: 1rem auto;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
