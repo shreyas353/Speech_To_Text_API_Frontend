@@ -13,8 +13,10 @@ export default function SpeechToText() {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
-  // ✅ Automatically adjust for mobile device access
-  const BACKEND_URL = `http://${window.location.hostname}:5000/transcribe`;
+  // ✅ Automatically switches between local and deployed backend
+  const BACKEND_URL =
+    import.meta.env.VITE_BACKEND_URL ||
+    "https://speech-to-text-api-backend.onrender.com/transcribe";
 
   const handleUpload = async () => {
     if (!file) {
@@ -24,6 +26,7 @@ export default function SpeechToText() {
 
     const formData = new FormData();
     formData.append("audio", file);
+
     await sendToTranscription(formData);
   };
 
@@ -66,7 +69,7 @@ export default function SpeechToText() {
         const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
         setRecordedBlob(audioBlob);
 
-        // ✅ Prevent transcription if blob is too small (mobile edge case)
+        // ✅ Skip sending if blob is too short (common on mobile)
         if (audioBlob.size < 1000) {
           alert("Recording too short. Try again.");
           setTranscription("❌ Recording too short.");
@@ -184,10 +187,16 @@ export default function SpeechToText() {
         {recordedBlob && (
           <>
             <audio className="audio-preview" controls>
-              <source src={URL.createObjectURL(recordedBlob)} type={recordedBlob.type} />
+              <source
+                src={URL.createObjectURL(recordedBlob)}
+                type={recordedBlob.type}
+              />
               Your browser does not support the audio element.
             </audio>
-            <button className="secondary-button mt-2" onClick={handleDownloadAudio}>
+            <button
+              className="secondary-button mt-2"
+              onClick={handleDownloadAudio}
+            >
               ⬇️ Download Audio
             </button>
           </>
@@ -197,7 +206,10 @@ export default function SpeechToText() {
           <div className="transcription-box">
             <h2>📝 Transcription</h2>
             <p>{transcription}</p>
-            <button className="secondary-button mt-2" onClick={handleSaveText}>
+            <button
+              className="secondary-button mt-2"
+              onClick={handleSaveText}
+            >
               💾 Save Transcription
             </button>
           </div>
