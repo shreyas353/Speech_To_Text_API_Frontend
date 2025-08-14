@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  --bg: #f4f4f5;
+  --text: #111;
+  --primary: #5c46d3;
+  --box: #fff;
+  --highlight: #7b61ff;
+}
+
+.dark body {
+  --bg: #1f2937;
+  --text: #f3f4f6;
+  --box: #111827;
+  --highlight: #7b61ff;
+}
+
+.speech-container.fullscreen {
+  min-height: calc(100vh - 5rem);
+}
+
+.speech-box {
+  animation: fadeIn 0.5s ease;
+}
+
+.mode-button,
+.primary-button,
+.secondary-button,
+.record-button,
+.stop-button {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.mode-button.active {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.primary-button {
+  background-color: var(--primary);
+  color: white;
+}
+
+.secondary-button {
+  background-color: #e5e7eb;
+  color: #111;
+}
+
+.record-button {
+  background-color: #10b981;
+  color: white;
+}
+
+.stop-button {
+  background-color: #ef4444;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
