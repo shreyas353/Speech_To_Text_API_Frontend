@@ -15,7 +15,7 @@ export default function SpeechToText() {
   const audioChunksRef = useRef([]);
 
   const BACKEND_URL =
-    import.meta.env.VITE_BACKEND_URL || "http://https://speech-to-text-api-backend.onrender.com/transcribe";
+    import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/transcribe";
 
   const handleUpload = async () => {
     if (!file) return alert("Please select an audio file");
