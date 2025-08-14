@@ -14,8 +14,12 @@ export default function SpeechToText() {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
-  const BACKEND_URL =
-    import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/transcribe";
+  // Automatically use deployed backend if VITE_BACKEND_URL is set, otherwise fallback to localhost
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
+  ? new URL("/transcribe", import.meta.env.VITE_BACKEND_URL).toString()
+  : window.location.hostname === "localhost"
+    ? "http://localhost:5000/transcribe"
+    : "https://speech-to-text-api-backend.onrender.com/transcribe";
 
   const handleUpload = async () => {
     if (!file) return alert("Please select an audio file");
